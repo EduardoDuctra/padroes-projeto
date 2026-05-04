@@ -1,8 +1,8 @@
-package br.csi.padroes_revisao.exercicio1;
+package br.csi.padroes_revisao.exercicio1_PadroesDeProjeto;
 
-import br.csi.padroes_revisao.exercicio1.formasGeometricas.Retangulo;
-import br.csi.padroes_revisao.exercicio1.formasGeometricas.Triangulo;
-import br.csi.padroes_revisao.exercicio1.infra.FormaGeometrica;
+import br.csi.padroes_revisao.exercicio1_PadroesDeProjeto.formasGeometricas.Retangulo;
+import br.csi.padroes_revisao.exercicio1_PadroesDeProjeto.formasGeometricas.Triangulo;
+import br.csi.padroes_revisao.exercicio1_PadroesDeProjeto.infra.FormaGeometrica;
 
 import java.util.ArrayList;
 import java.util.Collection;

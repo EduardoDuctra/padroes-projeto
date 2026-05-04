@@ -1,7 +1,7 @@
-package br.csi.padroes_revisao.exercicio1;
+package br.csi.padroes_revisao.exercicio1_PadroesDeProjeto;
 
-import br.csi.padroes_revisao.exercicio1.infra.FormaGeometrica;
-import br.csi.padroes_revisao.exercicio1.infra.Volume;
+import br.csi.padroes_revisao.exercicio1_PadroesDeProjeto.infra.FormaGeometrica;
+import br.csi.padroes_revisao.exercicio1_PadroesDeProjeto.infra.Volume;
 import lombok.Data;
 
 import java.util.Collection;
@@ -12,7 +12,7 @@ public class Imovel implements FormaGeometrica, Volume {
     private String identificacao;
     private String proprietario;
     private String endereco;
-    private br.csi.padroes_revisao.exercicio1.TipoUso tipo;
+    private TipoUso tipo;
     private Collection<Comodo>comodos;
 
 
