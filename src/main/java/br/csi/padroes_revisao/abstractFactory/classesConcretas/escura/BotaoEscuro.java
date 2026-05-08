@@ -1,4 +1,10 @@
-package br.csi.padroes_revisao.abstractFactory.classesConcretas;
+package br.csi.padroes_revisao.abstractFactory.classesConcretas.escura;
 
-public class BotaoClaro {
+import br.csi.padroes_revisao.abstractFactory.componentesBasicos.Botao;
+
+public class BotaoEscuro implements Botao {
+    @Override
+    public void render() {
+        System.out.println("Botão Escuro");
+    }
 }
