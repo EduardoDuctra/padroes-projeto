@@ -1,6 +1,5 @@
-package br.csi.padroes_revisao.prova2.framework;
+package br.csi.padroes_revisao.prova2.abstractFactory;
 
-import br.csi.padroes_revisao.prova2.PrototypeFactory;
 import br.csi.padroes_revisao.prova2.annotation.DeepCopy;
 
 import java.lang.reflect.Field;

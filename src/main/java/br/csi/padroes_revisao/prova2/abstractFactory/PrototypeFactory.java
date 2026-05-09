@@ -1,4 +1,4 @@
-package br.csi.padroes_revisao.prova2;
+package br.csi.padroes_revisao.prova2.abstractFactory;
 
 import java.lang.reflect.InvocationTargetException;
 

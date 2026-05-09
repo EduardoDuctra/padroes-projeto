@@ -1,9 +1,10 @@
-package br.csi.padroes_revisao.prova2;
+package br.csi.padroes_revisao.prova2.abstractFactory;
 
+import br.csi.padroes_revisao.prova1.abstractFabric.Prototype;
+import br.csi.padroes_revisao.prova1.abstractFabric.ReflectionPrototypeFactory;
 import br.csi.padroes_revisao.prova2.exemplos.ClasseExemplo;
 import br.csi.padroes_revisao.prova2.exemplos.ClasseExemplo2;
 import br.csi.padroes_revisao.prova2.exemplos.ClasseExemplo3;
-import br.csi.padroes_revisao.prova2.framework.Framework;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
@@ -11,7 +12,15 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) throws NoSuchFieldException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
 
-        PrototypeFactory factory = new Framework();
+
+        PrototypeAbstractFactory abstractFactory = new DeepCopyFactory();
+
+        PrototypeFactory prototypeFactory = (PrototypeFactory) abstractFactory.criarPrototype();
+
+
+
+
+
 
         ClasseExemplo original = new ClasseExemplo();
         original.setId(1L);
@@ -35,7 +44,7 @@ public class Main {
         original.setExemplo2(exemplo2);
 
         //fazendo a copia
-        ClasseExemplo copia = (ClasseExemplo) factory.copyFromPrototype(original);
+        ClasseExemplo copia = (ClasseExemplo) prototypeFactory.copyFromPrototype(original);
 
 
         //MOSTRAR RESULTADOS
