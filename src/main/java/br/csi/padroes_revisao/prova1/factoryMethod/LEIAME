@@ -1,0 +1,20 @@
+PADRÃO 1:
+Implementar o objeto ReflectionPrototype que permite clonar um objeto protótipo passado por parâmetro.
+A clonagem deve ser do tipo rasa modificada, seguindo as regras:
+    - Rasa para qualquer tipo de objeto, porém...;
+    - Se houver uma propriedade do tipo Map ou List deverá fazer cópia profunda da List/Map,
+        porém sem fazer cópia profunda dos objetos contidos dentro da List/Map.
+A classe TestCase pode ser modificada e utilizada para testar a sua implementação. Sendo que quando nenhuma exceção
+é atirada, significa que o teste passou.
+
+PADRÃO 2:
+Implementar o Padrão MethodFactory na classe PrototypeFactory, onde cada objeto protótipo deve retornar uma instância
+de ReflectionPrototype. A única forma de obter objetos ReflectionPrototype deve ser através do Method Factory.
+
+NOTAS:
+[4,0] ReflectionPrototype
+    [1,0] Testes 1-6
+    [1,5] Teste 7
+    [1,5] Teste 8
+[1,0] MethodFactory
+[1,0] Padronização e organização do código
