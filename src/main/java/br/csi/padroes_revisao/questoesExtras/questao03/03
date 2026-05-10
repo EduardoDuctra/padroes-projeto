@@ -1,0 +1,11 @@
+Desenvolver um framework de serialização utilizando Reflection.
+
+O framework deverá converter qualquer objeto para JSON.
+
+A serialização deverá:
+- considerar atributos públicos;
+- utilizar getters para atributos privados;
+- ignorar atributos anotados com @JsonIgnore;
+- serializar objetos anotados com @JsonDeep.
+
+Deverá existir suporte a List e Map.

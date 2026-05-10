@@ -1,0 +1,13 @@
+O aluno deverá desenvolver um framework de validação utilizando Reflection.
+
+Toda propriedade anotada com @NotNull deverá ser validada.
+Caso a propriedade esteja nula, uma exceção deverá ser lançada.
+
+A validação deve funcionar:
+- diretamente em atributos públicos;
+- através de getters para atributos privados.
+
+Além disso, propriedades anotadas com @ValidateObject
+devem ser validadas recursivamente.
+
+Deverá ser implementada a interface ValidatorFramework.
