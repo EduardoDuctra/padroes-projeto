@@ -68,7 +68,21 @@ public class ValidacaoFramework implements Prototype{
                         .append("\"");
             }
 
+            else if(f.isAnnotationPresent(JsonDeep.class)){
+                json.append(serializarObjeto(valorCampo));
+            }
+            else{
+                json.append(valorCampo);
+            }
+
+            primeiro = false;
+
+
         }
+
+        json.append("}");
+
+        return json.toString();
 
     }
 }

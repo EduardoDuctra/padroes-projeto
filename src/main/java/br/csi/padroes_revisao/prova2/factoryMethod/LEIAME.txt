@@ -1,3 +1,4 @@
+n
 Enunciado:
 
 O aluno deverá desenvolver um framework que permite a criação de cópias de qualquer objeto, copiando
