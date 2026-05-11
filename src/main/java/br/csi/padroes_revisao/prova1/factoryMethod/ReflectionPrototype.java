@@ -44,6 +44,8 @@ public class ReflectionPrototype implements Prototype{
                 Map copiaProfunda = new HashMap();
                 copiaProfunda.putAll((Map) valor);
 
+                //atribuir o valor no metodo
+                // getter -> acho o setter dele e passo o valor
                 Method setter = prototype.getClass().getMethod(
                         m.getName().replace("get", "set"),
                         m.getReturnType()
@@ -59,6 +61,8 @@ public class ReflectionPrototype implements Prototype{
                 List copiaProfundaLista = new ArrayList();
                 copiaProfundaLista.addAll((List) valor);
 
+                //atribuir o valor no metodo
+                // getter -> acho o setter dele e passo o valor
                 Method setter = prototype.getClass().getMethod(
                         m.getName().replace("get", "set"),
                         m.getReturnType()
