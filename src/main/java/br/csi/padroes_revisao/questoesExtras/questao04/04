@@ -1,9 +1,0 @@
-Desenvolver um framework de criação automática de objetos.
-
-O framework deverá:
-- identificar construtores via Reflection;
-- criar objetos dinamicamente;
-- injetar dependências anotadas com @Inject;
-- permitir múltiplos tipos concretos através do padrão Factory Method.
-
-As dependências devem ser resolvidas automaticamente.
