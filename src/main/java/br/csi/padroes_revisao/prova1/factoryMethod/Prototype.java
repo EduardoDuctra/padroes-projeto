@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public interface Prototype {
 
-    Object clonePrototype() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException;
+    Object clonePrototype(Object prototype) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, InstantiationException, NoSuchFieldException;
 
+//    Object clonePrototype() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, InstantiationException, NoSuchFieldException;
 }

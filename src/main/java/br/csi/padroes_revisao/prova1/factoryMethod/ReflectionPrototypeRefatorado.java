@@ -1,28 +1,43 @@
-package br.csi.padroes_revisao.prova2.factoryMethod;
+package br.csi.padroes_revisao.prova1.factoryMethod;
 
 import br.csi.padroes_revisao.prova2.annotation.DeepCopy;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class Framework implements PrototypeFactory {
-    @Override
-    public Object copyFromPrototype(Object prototype) throws InstantiationException, IllegalAccessException, NoSuchFieldException, InvocationTargetException, NoSuchMethodException {
+public class ReflectionPrototypeRefatorado implements Prototype{
 
-        //cria um objeto do mesmo tipo/classe
-        Class classe = prototype.getClass();
+    //recebe um objeto
+    private Object prototype;
 
 
-        Object copia = classe.newInstance();
-
-        copiarAtributosPublicos(prototype, copia);
-        copiarGetterSetter(prototype, copia);
-
-        return copia;
-
+    public ReflectionPrototypeRefatorado(Object prototype) {
+        this.prototype = prototype;
 
     }
+
+
+    @Override
+    public Object clonePrototype(Object prototype) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, InstantiationException, NoSuchFieldException {
+        //invoca o metodo clone de prototype
+        //clona
+        Object objetoClonado = prototype.getClass().getMethod("clone").invoke(prototype);
+
+        copiarAtributosPublicos(prototype,objetoClonado);
+        copiarAtributosPrivados(prototype,objetoClonado);
+        copiarGetterSetter(prototype,objetoClonado);
+        copiarMetodosPrivados(prototype,objetoClonado);
+
+        return objetoClonado;
+    }
+
+
+
 
     public void copiarAtributosPublicos(Object original, Object clone) throws InstantiationException, IllegalAccessException, NoSuchFieldException, InvocationTargetException, NoSuchMethodException {
 
@@ -32,18 +47,29 @@ public class Framework implements PrototypeFactory {
         //percorre os campos
         for(Field atributo : atributos) {
 
+
             //pego o valor da atributo do objeto original
             Object valor = atributo.get(original);
 
-            //se tem a anotação e diferente de null
-            if(atributo.isAnnotationPresent(DeepCopy.class) && valor !=null) {
+            //COPIA PROFUNDA MAP
+            if(valor instanceof Map){
 
-                //pego o valor e coloco no campo valor
-                //recursiva -> copia profunda
-                //sempre que tiver objeto dentro de objeto
-                valor = copyFromPrototype(valor);
+                Map copiaMap = new HashMap();
+                copiaMap.putAll((Map) valor);
 
+                valor = copiaMap;
             }
+
+            //COPIA PROFUNDA LIST
+            else if(valor instanceof List){
+
+                List copiaLista = new ArrayList();
+                copiaLista.addAll((List) valor);
+
+                valor = copiaLista;
+            }
+
+
 
             //passo para o clone o valor no atributo
             atributo.set(clone, valor);
@@ -80,16 +106,26 @@ public class Framework implements PrototypeFactory {
                     //procurar o getter e o tipo de retorno
                     Method setter = original.getClass().getMethod("set"+nomeMetodo, getter.getReturnType());
 
-                    //procurar o atributo
-                    Field atributo = original.getClass().getDeclaredField(nomeMetodo.toLowerCase());
 
 
-                    if(atributo.isAnnotationPresent(DeepCopy.class)){
+                    //COPIA PROFUNDA MAP
+                    if(valor instanceof Map){
 
-                        //pego o valor e coloco no campo valor
-                        valor = copyFromPrototype(valor);
+                        Map copiaMap = new HashMap();
+                        copiaMap.putAll((Map) valor);
 
+                        valor = copiaMap;
                     }
+
+                    //COPIA PROFUNDA LIST
+                    else if(valor instanceof List){
+
+                        List copiaLista = new ArrayList();
+                        copiaLista.addAll((List) valor);
+
+                        valor = copiaLista;
+                    }
+
 
                     setter.invoke(clone, valor);
                 }
@@ -118,15 +154,25 @@ public class Framework implements PrototypeFactory {
             //pego o valor da atributo do objeto original
             Object valor = atributo.get(original);
 
-            //se tem a anotação e diferente de null
-            if(atributo.isAnnotationPresent(DeepCopy.class) && valor !=null) {
 
-                //pego o valor e coloco no campo valor
-                //recursiva -> copia profunda
-                //sempre que tiver objeto dentro de objeto
-                valor = copyFromPrototype(valor);
+            //COPIA PROFUNDA MAP
+            if(valor instanceof Map){
 
+                Map copiaMap = new HashMap();
+                copiaMap.putAll((Map) valor);
+
+                valor = copiaMap;
             }
+
+            //COPIA PROFUNDA LIST
+            else if(valor instanceof List){
+
+                List copiaLista = new ArrayList();
+                copiaLista.addAll((List) valor);
+
+                valor = copiaLista;
+            }
+
 
             //passo para o clone o valor no atributo
             atributo.set(clone, valor);
@@ -175,16 +221,25 @@ public class Framework implements PrototypeFactory {
                      */
                     setter.setAccessible(true);
 
-                    //procurar o atributo
-                    Field atributo = original.getClass().getDeclaredField(nomeMetodo.toLowerCase());
 
+                    //COPIA PROFUNDA MAP
+                    if(valor instanceof Map){
 
-                    if(atributo.isAnnotationPresent(DeepCopy.class)){
+                        Map copiaMap = new HashMap();
+                        copiaMap.putAll((Map) valor);
 
-                        //pego o valor e coloco no campo valor
-                        valor = copyFromPrototype(valor);
-
+                        valor = copiaMap;
                     }
+
+                    //COPIA PROFUNDA LIST
+                    else if(valor instanceof List){
+
+                        List copiaLista = new ArrayList();
+                        copiaLista.addAll((List) valor);
+
+                        valor = copiaLista;
+                    }
+
 
                     setter.invoke(clone, valor);
                 }
@@ -193,6 +248,21 @@ public class Framework implements PrototypeFactory {
             }
 
         }
+    }
+
+
+
+    public static class PrototypeFactory {
+        /**
+         * Método fábrica responsável por instanciar ReflectionPrototype
+         * encapsula a criação do objeto
+         * centraliza a instanciação
+         * evita que o usuário use new ReflectionPrototype()
+         */
+        public static Prototype getPrototype(Object object) {
+            return new ReflectionPrototypeRefatorado(object);
+        }
+
     }
 
 }

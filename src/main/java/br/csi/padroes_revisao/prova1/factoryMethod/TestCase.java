@@ -3,20 +3,20 @@ package br.csi.padroes_revisao.prova1.factoryMethod;
 import java.lang.reflect.InvocationTargetException;
 
 public class TestCase {
-    public static void main(String[] args) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    public static void main(String[] args) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, NoSuchFieldException, InstantiationException {
         new TestCase().doTest();
     }
 
-    public void doTest() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    public void doTest() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, NoSuchFieldException, InstantiationException {
 
         //estou instanciando o objeto
         ObjExemplo objExemplo = ObjExemplo.getInstance();
 
         //criando o prototipo chamando o factory
-        Prototype prototype = ReflectionPrototype.PrototypeFactory.getPrototype(objExemplo);
+        Prototype prototype = ReflectionPrototypeRefatorado.PrototypeFactory.getPrototype(objExemplo);
 
         //tenho o objeto -> criei um clone dele
-        ObjExemplo clone = (ObjExemplo) prototype.clonePrototype();
+        ObjExemplo clone = (ObjExemplo) prototype.clonePrototype(objExemplo);
 
 
         //teste 1
