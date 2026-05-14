@@ -16,7 +16,11 @@ public class ReflectionPrototypeRefatorado implements Prototype{
     private Object prototype;
 
 
-    public ReflectionPrototypeRefatorado(Object prototype) {
+    /**
+     * constutor tem que ser privado
+     * @param prototype
+     */
+    private ReflectionPrototypeRefatorado(Object prototype) {
         this.prototype = prototype;
 
     }
