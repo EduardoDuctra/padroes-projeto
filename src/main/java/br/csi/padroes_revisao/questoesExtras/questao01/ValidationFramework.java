@@ -1,7 +1,6 @@
 package br.csi.padroes_revisao.questoesExtras.questao01;
 
 import br.csi.padroes_revisao.exercicio8.ValidationException;
-import br.csi.padroes_revisao.prova2.annotation.DeepCopy;
 import br.csi.padroes_revisao.questoesExtras.questao01.anotacoes.NotNull;
 import br.csi.padroes_revisao.questoesExtras.questao01.anotacoes.ValidateObject;
 
@@ -9,10 +8,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class ValidationFramework implements Prototype {
 
