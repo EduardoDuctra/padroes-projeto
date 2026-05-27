@@ -1,0 +1,16 @@
+
+HashMap ->      sem ordem             |   rapida  | tabela hash
+TreeMap ->      com ordem             |   lenta   | arvore
+LinkedHashMap-> ordem de inserção     |   rapida  | tabela hash + lista
+
+
+HashMap → quando quer performance
+
+TreeMap → quando precisa ordenado
+
+LinkedHashMap → quando quer manter ordem de inserção
+
+
+___________________________________________________
+
+synchronized -> evita concorrência
