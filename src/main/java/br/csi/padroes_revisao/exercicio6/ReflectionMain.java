@@ -1,6 +1,6 @@
 package br.csi.padroes_revisao.exercicio6;
 
-import br.csi.padroes_revisao.exercicio2.infra.Conta;
+import br.csi.padroes_revisao.REVISAO.exercicio2.infra.Conta;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
