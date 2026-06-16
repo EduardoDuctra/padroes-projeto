@@ -1,18 +1,16 @@
-package br.csi.padroes_revisao.PADROES_ESTRUTURAIS.decorator;
+package br.csi.padroes_revisao.PADROES_ESTRUTURAIS.observer;
 
-import br.csi.padroes_revisao.PADROES_ESTRUTURAIS.decorator.infra.*;
-import br.csi.padroes_revisao.PADROES_ESTRUTURAIS.decorator.tipoConta.ContaCorrente;
-import br.csi.padroes_revisao.PADROES_ESTRUTURAIS.decorator.tipoConta.ContaPoupanca;
-import br.csi.padroes_revisao.PADROES_ESTRUTURAIS.decorator.tipoConta.FundoRenda;
-import br.csi.padroes_revisao.PADROES_ESTRUTURAIS.logProxy.LogBancoProxy;
-import lombok.SneakyThrows;
 
-import java.lang.reflect.Proxy;
+
+import br.csi.padroes_revisao.PADROES_ESTRUTURAIS.observer.infra.*;
+import br.csi.padroes_revisao.PADROES_ESTRUTURAIS.observer.tipoConta.ContaCorrente;
+import br.csi.padroes_revisao.PADROES_ESTRUTURAIS.observer.tipoConta.ContaPoupanca;
+import br.csi.padroes_revisao.PADROES_ESTRUTURAIS.observer.tipoConta.FundoRenda;
+
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 
-public class Banco implements BancoInterface {
+public class Banco {
 
     private Map<Long, Conta> listaContas;
     private Long numero = 1L;
@@ -21,36 +19,40 @@ public class Banco implements BancoInterface {
         this.listaContas = tipoMapa;
     }
 
-    @SneakyThrows
-    public static BancoInterface createBanco() {
-        return (BancoInterface) Proxy.newProxyInstance(
-                Banco.class.getClassLoader(),
-                new Class[]{BancoInterface.class},
-                new LogBancoProxy(new Banco(new HashMap<>()))
-        );
+    private Long gerarNumeroConta(){
+        synchronized (this){
+            return numero++;
+        }
     }
 
-    @Override
     public Conta criarConta(String cpf, Double saldo, TipoConta tipo, boolean especial, Double limite) {
+
+        SerasaObserver serasa = new SerasaObserver();
 
         if(tipo == TipoConta.CONTA_CORRENTE){
             ContaCorrente cc = new ContaCorrente();
+
+            cc.adicionarObserver(serasa);
+
             cc.setCpf(cpf);
             cc.setSaldo(saldo);
             cc.setEspecial(especial);
             cc.setLimiteChequeEspecial(limite);
             cc.setTipoConta(tipo);
-            cc.setNumeroConta(11111111L);
+            cc.setNumeroConta(gerarNumeroConta());
 
             listaContas.put(cc.getNumeroConta(), cc);
 
             return cc;
         } else if (tipo == TipoConta.POUPANCA){
             ContaPoupanca cp =  new ContaPoupanca();
+
+            cp.adicionarObserver(serasa);
+
             cp.setCpf(cpf);
             cp.setSaldo(saldo);
             cp.setTipoConta(tipo);
-            cp.setNumeroConta(222222222L);
+            cp.setNumeroConta(gerarNumeroConta());
 
             listaContas.put(cp.getNumeroConta(), cp);
 
@@ -58,10 +60,14 @@ public class Banco implements BancoInterface {
 
         } else {
             FundoRenda fr = new FundoRenda(tipo);
+
+            fr.adicionarObserver(serasa);
+
+
             fr.setCpf(cpf);
             fr.setSaldo(saldo);
             fr.setTipoConta(tipo);
-            fr.setNumeroConta(3333333L);
+            fr.setNumeroConta(gerarNumeroConta());
 
             listaContas.put(fr.getNumeroConta(), fr);
 
@@ -72,7 +78,6 @@ public class Banco implements BancoInterface {
 
 
 
-    @Override
     public void excluirConta(Long numeroConta){
         Conta conta = listaContas.remove(numeroConta);
 
@@ -82,7 +87,6 @@ public class Banco implements BancoInterface {
     }
 
 
-    @Override
     public void saque(Long numeroConta, double valor){
 
         Conta conta = listaContas.get(numeroConta);
@@ -112,7 +116,6 @@ public class Banco implements BancoInterface {
 
     }
 
-    @Override
     public void deposito(Long numeroConta, double valor){
 
         Conta conta = listaContas.get(numeroConta);
@@ -132,7 +135,6 @@ public class Banco implements BancoInterface {
 
     }
 
-    @Override
     public Double getSaldo(Long numeroConta){
 
         Conta conta = listaContas.get(numeroConta);
@@ -146,7 +148,6 @@ public class Banco implements BancoInterface {
     }
 
 
-    @Override
     public void transferencia(Long numeroContaOrigem, Long numeroContaDestino, double valor){
 
         Conta contaOrigem = listaContas.get(numeroContaOrigem);
@@ -170,7 +171,6 @@ public class Banco implements BancoInterface {
 
     }
 
-    @Override
     public String extrato(Long numeroConta){
 
         Conta conta = listaContas.get(numeroConta);
@@ -190,7 +190,6 @@ public class Banco implements BancoInterface {
 
     }
 
-    @Override
     public void calcularRendimentos(double jurosPoupanca, double jurosRenda){
 
         for(Conta conta : listaContas.values()){
@@ -211,7 +210,6 @@ public class Banco implements BancoInterface {
 
     }
 
-    @Override
     public Collection<Conta> getContas() {
         return listaContas.values();
     }

@@ -1,7 +1,6 @@
 package br.csi.padroes_revisao.PADROES_ESTRUTURAIS.exercicioAdapter;
 
 import br.csi.padroes_revisao.PADROES_ESTRUTURAIS.exercicioAdapter.infra.*;
-import br.csi.padroes_revisao.exercicioAdapter.infra.*;
 import br.csi.padroes_revisao.PADROES_ESTRUTURAIS.exercicioAdapter.tipoConta.ContaCorrente;
 import br.csi.padroes_revisao.PADROES_ESTRUTURAIS.exercicioAdapter.tipoConta.ContaPoupanca;
 import br.csi.padroes_revisao.PADROES_ESTRUTURAIS.exercicioAdapter.tipoConta.FundoRenda;

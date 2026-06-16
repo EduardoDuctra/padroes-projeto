@@ -3,7 +3,6 @@ package br.csi.padroes_revisao.PADROES_CRIACAO.exercicio2;
 import br.csi.padroes_revisao.PADROES_CRIACAO.exercicio2.factory.ContaFactory;
 import br.csi.padroes_revisao.PADROES_CRIACAO.exercicio2.factory.ContaFactoryProvider;
 import br.csi.padroes_revisao.PADROES_CRIACAO.exercicio2.infra.*;
-import br.csi.padroes_revisao.factoryMethod.exercicio2.infra.*;
 import br.csi.padroes_revisao.PADROES_CRIACAO.exercicio2.tipoConta.ContaCorrente;
 import br.csi.padroes_revisao.PADROES_CRIACAO.exercicio2.tipoConta.ContaPoupanca;
 import br.csi.padroes_revisao.PADROES_CRIACAO.exercicio2.tipoConta.FundoRenda;

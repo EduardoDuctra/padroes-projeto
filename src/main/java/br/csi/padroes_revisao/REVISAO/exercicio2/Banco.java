@@ -1,7 +1,6 @@
 package br.csi.padroes_revisao.REVISAO.exercicio2;
 
 import br.csi.padroes_revisao.REVISAO.exercicio2.infra.*;
-import br.csi.padroes_revisao.exercicio2.infra.*;
 import br.csi.padroes_revisao.REVISAO.exercicio2.tipoConta.ContaCorrente;
 import br.csi.padroes_revisao.REVISAO.exercicio2.tipoConta.ContaPoupanca;
 import br.csi.padroes_revisao.REVISAO.exercicio2.tipoConta.FundoRenda;
