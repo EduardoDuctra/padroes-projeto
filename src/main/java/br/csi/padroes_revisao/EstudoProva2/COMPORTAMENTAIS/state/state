@@ -1,0 +1,2 @@
+A ideia do State é que o comportamento do objeto muda
+ conforme seu estado interno, sem precisar de vários if ou switch.
