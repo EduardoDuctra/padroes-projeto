@@ -1,0 +1,21 @@
+Você foi contratado por uma empresa de e-commerce para revisar a parte do
+sistema responsável pela validação de pedidos antes da aprovação da compra.
+Atualmente, o sistema realiza todas as validações dentro de um único método.
+Isso tem gerado dificuldades sempre que uma nova regra precisa ser adicionada ou
+alterada, exigindo modificações perigosas e centralizadas.
+
+Seu objetivo é refatorar a lógica de aprovação de pedidos de forma a torná-la mais
+modular, reutilizável e fácil de estender. Novas validações devem poder ser
+adicionadas sem que o código existente precise ser modificado.
+
+Além disto você deverá explicar aqui neste arquivo a sua implementação e porquê ela aumenta
+a qualidade do código.
+
+Você será avaliado por:
+- Qualidade do código entregue;
+- Implementação do padrão que melhor reduz o acoplamento;
+- Alterações gerais no código de validação que podem facilitar alterações de regras futuras.
+- Explicação da implementação sobre cada melhoria realizada.
+------------------------------------------------------------------------------
+
+EXPLICAÇÃO
